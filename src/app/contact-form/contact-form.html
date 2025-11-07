@@ -1,0 +1,52 @@
+
+<form [formGroup]="contactForm" (ngSubmit)="sendMessage()" enctype="multipart/form-data">
+  <div class="mb-3">
+    <label for="nombreReceta" class="form-label">Nombre de la Receta:</label>
+    <input
+      type="text"
+      class="form-control"
+      id="nombreReceta"
+      formControlName="nombre"
+      placeholder="Ej: Tarta de queso" />
+  </div>
+
+  <div class="mb-3">
+    <label for="ingredientes" class="form-label">Ingredientes (separados por comas):</label>
+    <textarea
+      class="form-control"
+      id="ingredientes"
+      formControlName="ingredientes"
+      rows="4"
+      placeholder="Ej: Harina, huevos, azúcar, leche..."></textarea>
+  </div>
+
+  <div class="mb-3">
+    <label for="imagen" class="form-label">Imagen de la receta:</label>
+    <input
+      type="file"
+      class="form-control"
+      id="imagen"
+      (change)="onFileSelected($event)"
+      accept="image/*" />
+    
+  </div>
+
+  <button type="submit" class="btn btn-primary">Enviar Receta</button>
+</form>
+
+<!-- VALIDACIONES -->
+@if (nombre?.invalid && (nombre?.dirty || nombre?.touched)) {
+  <div class="alert alert-danger mt-2">
+    @if (nombre?.hasError('required')) {
+      <div>El nombre de la receta es obligatorio</div>
+    }
+  </div>
+}
+
+@if (ingredientes?.invalid && (ingredientes?.dirty || ingredientes?.touched)) {
+  <div class="alert alert-danger mt-2">
+    @if (ingredientes?.hasError('required')) {
+      <div>Los ingredientes son obligatorios</div>
+    }
+  </div>
+}
