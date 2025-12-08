@@ -25,7 +25,6 @@ export class ContactForm {
     ingredientes: new FormControl('', Validators.required)
   });
 
-
   imagenSeleccionada: File | null = null;
   imagenPreview: string | ArrayBuffer | null = null;
 
