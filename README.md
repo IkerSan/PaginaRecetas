@@ -1,59 +1,73 @@
-# PaginaRecetas
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.3.5.
+Este proyecto es una aplicación web desarrollada en **Angular** para la gestión y visualización de recetas de cocina.
 
-## Development server
+## Arquitectura de la Solución
 
-To start a local development server, run:
+La solución sigue una arquitectura basada en componentes, separando claramente la lógica de presentación, la gestión de datos y la navegación.
+
+### Componentes Principales (`/src/app`)
+
+La interfaz de usuario se construye a partir de componentes modulares:
+
+- **Navbar (`/navbar`)**:
+
+  - Componente de navegación superior.
+  - Facilita el acceso rápido a las secciones principales (Inicio, Recetas, Contacto).
+
+- **Módulo de Recetas (`/receta`)**:
+
+  - **RecetaComponent**: Vista principal que lista las recetas disponibles. Implementa funcionalidades como búsqueda, filtrado por puntuación y ordenación.
+  - **RecetaDetailComponent (`/receta/receta-detail`)**: Vista de detalle encargada de mostrar la información completa de una receta específica.
+
+- **Formulario de Contacto (`/contact-form`)**:
+  - Componente independiente para la interacción con el usuario (envío de mensajes).
+
+### Capa de Datos y Modelos
+
+- **Modelos (`/models`)**:
+
+  - Define las interfaces TypeScript (ej. `Receta`) para garantizar el tipado fuerte y la coherencia de los datos en toda la aplicación.
+
+- **Servicios (`/services`)**:
+  - **RecetasService**: Centraliza la comunicación HTTP. Se encarga de conectar los componentes con el backend para recuperar o guardar información de recetas.
+
+### Backend (Simulado)
+
+- **JSON Server**:
+  - Se utiliza `json-server` junto con el archivo `db.json` para simular una API REST completa.
+  - Permite realizar operaciones CRUD (Create, Read, Update, Delete) sin necesidad de configurar una base de datos real durante el desarrollo.
+
+---
+
+## Guía de Inicio Rápido
+
+### Prerrequisitos
+
+- Node.js y npm instalados.
+- Angular CLI (`npm install -g @angular/cli`).
+
+### 1. Instalar dependencias
 
 ```bash
-ng serve
+npm install
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+### 2. Iniciar el Backend (API Mock)
 
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+Es necesario iniciar primero el servidor de datos simulado:
 
 ```bash
-ng generate component component-name
+npm run start:api
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+_El servidor API escuchará en `http://localhost:3000`._
+
+### 3. Iniciar la Aplicación (Frontend)
+
+En una nueva terminal, inicia el servidor de desarrollo de Angular:
 
 ```bash
-ng generate --help
+npm start
 ```
 
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+_La aplicación estará disponible en `http://localhost:4200`._
