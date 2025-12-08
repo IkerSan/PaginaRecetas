@@ -1,0 +1,39 @@
+<div class="container mt-5" *ngIf="receta">
+  
+  <div class="row">
+    <div class="col-md-6">
+      <img [src]="receta.imagen" [alt]="receta.nombre" class="img-fluid rounded shadow">
+    </div>
+    <div class="col-md-6">
+      <h1 class="display-4">{{ receta.nombre }}</h1>
+      <div class="mb-3">
+         <span class="text-warning fs-3">
+          <!-- Calificación (va rellenando o quitando estrellas) -->
+             <span *ngFor="let _ of [].constructor(5); let i = index">
+                 {{ i < Math.round(receta.rating) ? '★' : '☆' }}
+             </span>
+         </span>
+         <span class="fs-5 ms-2 text-muted">{{ receta.rating }} / 5 ({{ receta.votes }} votos)</span>
+      </div>
+
+      <h4>Ingredientes:</h4>
+      <ul class="list-group list-group-flush mb-4">
+        <li class="list-group-item" *ngFor="let ing of receta.ingredientes">{{ ing }}</li>
+      </ul>
+
+      <div class="card bg-light">
+          <div class="card-body">
+              <h5 class="card-title">Votar esta receta:</h5>
+              <!-- Botones para votar -->
+               <div class="d-flex gap-2">
+                <button *ngFor="let star of [1,2,3,4,5]" 
+                        type="button" 
+                        class="btn btn-warning" 
+                        (click)="votar(star)">{{ star }} ★</button>
+             </div>
+          </div>
+      </div>
+
+    </div>
+  </div>
+</div>
