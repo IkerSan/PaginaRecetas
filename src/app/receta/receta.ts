@@ -22,17 +22,13 @@ export class RecetasComponent implements OnInit {
 
   constructor(private recetasService: RecetasService) {}
 
-  /**
-   * Al inicializar el componente, cargamos las recetas.
-   */
+   // Al inicializar el componente, cargamos las recetas.   
   ngOnInit() {
     this.cargarRecetas();
   }
 
-  /**
-   * Se suscribe al servicio para obtener la lista de recetas.
-   * Al recibirlas, actualiza la lista local y aplica el filtro inicial.
-   */
+   //Se suscribe al servicio para obtener la lista de recetas.
+   //Al recibirlas, actualiza la lista local y aplica el filtro inicial.
   cargarRecetas() {
     this.recetasService.getRecetas().subscribe(data => {
       this.recetas = data;
